@@ -25,7 +25,7 @@ export default {
       return this;
     } else {
       this.chain = [];
-      throw new NotImplementedError("You can't remove incorrect link!");
+      throw new Error("You can't remove incorrect link!");
     }
   },
 

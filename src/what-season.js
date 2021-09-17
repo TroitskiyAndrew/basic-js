@@ -14,8 +14,13 @@ import { NotImplementedError } from '../extensions/index.js';
 export default function getSeason(date) {
   if (arguments.length == 0)
     return 'Unable to determine the time of year!'
-  try {
-    let month = date.prototype.getMonth();
+  if (date instanceof Date) {
+    try {
+      let x = isNaN(date);
+    } catch {
+      throw new Error('Invalid date!');
+    }
+    let month = date.getMonth();
     if (month >= 11 ||  month <= 1) {
       return "winter"
     }else if(month >= 8) {
@@ -26,7 +31,8 @@ export default function getSeason(date) {
     else if(month >= 2) {
       return "spring"
     }
-  } catch {
-    throw new NotImplementedError('Invalid date!');
+  } else {
+    throw new Error('Invalid date!');
+    
   }
 }

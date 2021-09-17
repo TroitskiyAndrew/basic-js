@@ -24,8 +24,9 @@ export default class VigenereCipheringMachine {
     this.stright = stright;
   }
   encrypt(word, key) {
-    if (arguments.length != 2 || word.length == 0 || key.length == 0)
-      throw new NotImplementedError('Not implemented');
+    if (arguments.length < 2 || !word || !key){
+      throw new Error('Incorrect arguments!');
+    }
     const alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     word = word.toUpperCase();
     key = key.toUpperCase();
@@ -44,6 +45,9 @@ export default class VigenereCipheringMachine {
     return this.stright ? codeWord : codeWord.split("").reverse().join("");
   }
   decrypt(word, key) {
+    if (arguments.length < 2 || !word || !key){
+      throw new Error('Incorrect arguments!');
+    }
     const alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     word = word.toUpperCase();
     key = key.toUpperCase();
